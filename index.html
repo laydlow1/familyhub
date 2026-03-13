@@ -572,6 +572,34 @@
     </div>
 
     <script>
+      // --- THE GITHUB MAGIC BRIDGE ---
+      var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1iWscCeR_QZ4rZzJKZsixoug-MCs1y4sdkpuBfmv5PZZbs5Zkmd4Sf7DbH3CVpuGaZg/exec";
+
+      function createRunner(onSuccess, onError) {
+        return new Proxy({}, {
+          get: function(target, prop) {
+            if (prop === 'withSuccessHandler') return function(cb) { return createRunner(cb, onError); };
+            if (prop === 'withFailureHandler') return function(cb) { return createRunner(onSuccess, cb); };
+            
+            // Send the request to Google Apps Script
+            return function(...args) {
+              fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ path: prop, args: args })
+              })
+              .then(r => r.json())
+              .then(res => {
+                if (res.status === 'success' && onSuccess) onSuccess(res.data);
+                else if (res.status === 'error' && onError) onError(new Error(res.message));
+              })
+              .catch(e => { if (onError) onError(e); else console.error("Bridge Error:", e); });
+            };
+          }
+        });
+      }
+      var google = { script: { run: createRunner(null, null) } };
+      // --- END GITHUB MAGIC BRIDGE ---
       var pendingLoginName = ""; var systemAppUrl = ""; var pendingConfirmAction = null; var activeCountdownTimer = null; 
       var currentGameScore = 0; var currentGameQuestions = 0; var activeGameType = "";
 
