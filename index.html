@@ -399,6 +399,28 @@ body[class*="house"] button:active {
           opacity: 0.08 !important;
           filter: grayscale(100%) invert(100%) !important; 
       }
+
+      /* --- POTLUCK DARK MODE CONTRAST FIX --- */
+      body[class*="dark"] .potluck-item { 
+          background: #2a2a2a !important; 
+          color: #f0f0f0 !important; 
+          border-bottom: 1px solid #444 !important;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+      }
+      
+      body[class*="dark"] .potluck-item strong { 
+          color: #fff !important; 
+      }
+
+      body[class*="dark"] .potluck-info span { 
+          color: #ccc !important; 
+      }
+
+      /* Makes the 'Add Items' card in Potluck dark too */
+      body[class*="dark"] #viewPotluck .card {
+          background: #1e1e1e !important;
+          border-bottom-color: #444 !important;
+      }
     </style>
 
   </head>
