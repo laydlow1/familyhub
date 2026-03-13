@@ -334,6 +334,54 @@ body[class*="house"] button:active {
         body[class*="batman"] .main-banner, body[class*="spiderman"] .main-banner, body[class*="matrix"] .main-banner, body[class*="yellowstone"] .main-banner, body[class*="darkside"] .main-banner { height: 60px !important; }
         body[class*="batman"] .banner-text::after, body[class*="spiderman"] .banner-text::after, body[class*="matrix"] .banner-text::after, body[class*="yellowstone"] .banner-text::after, body[class*="darkside"] .banner-text::after { font-size: 28px !important; }
       }
+
+      @media (max-width: 800px) {
+        body[class*="batman"] .main-banner, body[class*="spiderman"] .main-banner, body[class*="matrix"] .main-banner, body[class*="yellowstone"] .main-banner, body[class*="darkside"] .main-banner { height: 60px !important; }
+        body[class*="batman"] .banner-text::after, body[class*="spiderman"] .banner-text::after, body[class*="matrix"] .banner-text::after, body[class*="yellowstone"] .banner-text::after, body[class*="darkside"] .banner-text::after { font-size: 28px !important; }
+      }
+
+      /* --- MASTER THEME COLOR VARIABLES (KILLS THE BLUE LEAK) --- */
+      body[class*="house"], body[class*="bama"] { --theme-primary: #9E1B32; --theme-bg: #fdf2f4; }
+      body[class*="auburn"] { --theme-primary: #003087; --theme-bg: #f0f4f8; }
+      body[class*="halloween"] { --theme-primary: #e67e22; --theme-bg: #fcf3eb; }
+      body[class*="xmas"] { --theme-primary: #c0392b; --theme-bg: #fcf1f0; }
+      body[class*="july4"] { --theme-primary: #2980b9; --theme-bg: #f0f5f9; }
+      body[class*="winter"] { --theme-primary: #3498db; --theme-bg: #f0f6fa; }
+      body[class*="spring"] { --theme-primary: #2ecc71; --theme-bg: #f0faf4; }
+      body[class*="summer"] { --theme-primary: #f39c12; --theme-bg: #fdf7ef; }
+      body[class*="fall"] { --theme-primary: #d35400; --theme-bg: #fbf2ec; }
+      body[class*="batman"] { --theme-primary: #f1c40f; --theme-bg: #222; }
+      body[class*="spiderman"] { --theme-primary: #0059b3; --theme-bg: #f0f4f8; }
+      body[class*="matrix"] { --theme-primary: #00FF41; --theme-bg: #111; }
+      body[class*="yellowstone"] { --theme-primary: #6b4c2a; --theme-bg: #fcfaf8; }
+      body[class*="darkside"] { --theme-primary: #e60000; --theme-bg: #222; }
+
+      /* Overrides default browser blue glowing shadow box on text inputs */
+      input:focus, textarea:focus, select:focus { outline: 2px solid var(--theme-primary, #1877F2) !important; outline-offset: -1px; box-shadow: none !important; }
+
+      /* Forces all leftover blue lines, badges, and buttons to instantly match the active theme */
+      body:not(.theme-light) .post, 
+      body:not(.theme-light) .comment-item, 
+      body:not(.theme-light) #birthdayBanner { border-left-color: var(--theme-primary) !important; }
+      
+      body:not(.theme-light) #birthdayBanner,
+      body:not(.theme-light) #gameScoreBoard { background: var(--theme-bg) !important; }
+      
+      body:not(.theme-light) .dropdown-content { border-color: var(--theme-primary) !important; }
+      
+      body:not(.theme-light) .file-upload-btn, 
+      body:not(.theme-light) label[for="newBabyFile"] { border-color: var(--theme-primary) !important; color: var(--theme-primary) !important; }
+      
+      body:not(.theme-light) .cat-badge, 
+      body:not(.theme-light) #btnSubmitNewBaby { background: var(--theme-primary) !important; color: #fff !important; border:none; }
+      
+      body:not(.theme-light) #gameScoreBoard,
+      body:not(.theme-light) .fb-comment-wrapper button[type="submit"] { color: var(--theme-primary) !important; }
+      
+      /* Keeps text readable on neon themes */
+      body[class*="batman"] .cat-badge, body[class*="batman"] #btnSubmitNewBaby,
+      body[class*="matrix"] .cat-badge, body[class*="matrix"] #btnSubmitNewBaby { color: #111 !important; font-weight: 900; }
+    </style>
     </style>
   </head>
 
