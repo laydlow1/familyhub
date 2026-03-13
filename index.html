@@ -246,8 +246,9 @@ body[class*="house"] button:active {
       body[class*="superman"] .sidebar-right::after { content: "🏙️"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
 
       @media (max-width: 800px) {
-        body[class*="batman"] .main-banner, body[class*="spiderman"] .main-banner, body[class*="superman"] .main-banner { height: 60px !important; }
-        body[class*="batman"] .banner-text::after, body[class*="spiderman"] .banner-text::after, body[class*="superman"] .banner-text::after { font-size: 28px !important; }
+        /* --- SUPERHERO THEMES --- */
+      body[class*="batman"] .banner-crest, body[class*="spiderman"] .banner-crest { display: none !important; }
+      body[class*="batman"] .sidebar, body[class*="spiderman"] .sidebar { display: flex !important; }
       }
     </style>
   </head>
