@@ -65,6 +65,16 @@
       .stacked-letters { display: flex; flex-direction: column; align-items: center; text-shadow: 2px 3px 5px rgba(0,0,0,0.4); font-weight: 900; font-size: 32px; line-height: 1.1;}
       .letter-spacer { height: 25px; } 
 
+      /* --- DARK MODE CONTRAST FIXES --- */
+      body[class*="dark"] #birthdayBanner { background: #1a1a1a !important; border-left-color: #4b93f0 !important; }
+      body[class*="dark"] #birthdayBanner div, body[class*="dark"] #nextBdayName, body[class*="dark"] #nextBdayDate, body[class*="dark"] #birthdayBanner span { color: #f0f0f0 !important; }
+      body[class*="dark"] .trivia-block { background: #222 !important; border-left-color: #bb86fc !important; }
+      body[class*="dark"] .trivia-block strong, body[class*="dark"] .trivia-block p { color: #f0f0f0 !important; }
+      body[class*="dark"] .trivia-block button { background: #333 !important; color: #f0f0f0 !important; border-color: #555 !important; }
+      body[class*="dark"] .trivia-block p[style*="background:#fff"] { background: #222 !important; border-color: #dc3545 !important; }
+      body[class*="dark"] .trivia-block p[style*="background:#e2e3e5"] { background: #444 !important; color: #fff !important; }
+      body[class*="dark"] #multiSelectBox { background: #2a2a2a !important; border-color: #444 !important; color: #fff !important; }
+
       .central-content-area { width: 100%; max-width: 650px; background: #ffffff; padding: 25px; box-shadow: 0 0 30px rgba(0,0,0,0.1); z-index: 10; box-sizing: border-box; overflow-y: visible !important; height: auto !important; margin: 0; }
       .central-content-area::-webkit-scrollbar { width: 6px; }
       .central-content-area::-webkit-scrollbar-track { background: transparent; }
