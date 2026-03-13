@@ -1128,10 +1128,8 @@ body[class*="house"] button:active {
 
             var editControls = '';
             if (currentUser === p.name) {
-              editControls = '<div style="position:absolute; top:15px; right:15px; display:flex; gap:10px;">' +
-                  '<button type="button" style="font-size:10px; color:#003087; background:none; border:none; cursor:pointer; font-weight:800;" onclick="startEditPost(' + p.rowNum + ')">EDIT</button>' +
-                  '<button type="button" style="font-size:10px; color:#ccc; background:none; border:none; cursor:pointer;" onclick="doDelete(' + p.rowNum + ')">DEL</button>' +
-                '</div>';
+              editControls = '<button type="button" style="font-size:10px; color:#003087; background:none; border:none; cursor:pointer; font-weight:800;" onclick="startEditPost(' + p.rowNum + ')">EDIT</button>' +
+                             '<button type="button" style="font-size:10px; color:#ccc; background:none; border:none; cursor:pointer;" onclick="doDelete(' + p.rowNum + ')">DEL</button>';
             }
 
             var rawPostText = p.message || '';
@@ -1142,13 +1140,15 @@ body[class*="house"] button:active {
             var safeName = p.name ? String(p.name).replace(/'/g, "\\'") : "";
 
             feed.innerHTML += '<div class="post" id="post_container_' + p.rowNum + '">' +
-              editControls +
               '<div class="post-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom: 1px dashed #eee; padding-bottom: 12px;">' +
                 '<div style="display:flex; align-items:center;">' +
                   '<div class="post-avatar">' + renderAvatarHtml(p.avatar) + '</div>' +
                   '<h3 class="post-user" style="margin:0;">' + p.name + '</h3>' +
                 '</div>' +
-                '<button type="button" style="background:#fdfbfa; border:1px solid #ddd; padding:4px 8px; border-radius:15px; font-size:10px; font-weight:800; color:#9E1B32; cursor:pointer;" onclick="openGallery(\'' + safeName + '\')">📸 ALBUM</button>' +
+                '<div style="display:flex; align-items:center; gap:8px;">' + 
+                  editControls +
+                  '<button type="button" style="background:#fdfbfa; border:1px solid #ddd; padding:4px 8px; border-radius:15px; font-size:10px; font-weight:800; color:#9E1B32; cursor:pointer;" onclick="openGallery(\'' + safeName + '\')">📸 ALBUM</button>' +
+                '</div>' +
               '</div>' +
               '<div id="post_text_' + p.rowNum + '" style="font-size:15px; color:#1c1e21; margin-bottom:10px;">' + safePostMessage + '</div>' +
               imgHtml +
