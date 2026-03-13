@@ -1246,7 +1246,6 @@ body[class*="house"] button:active {
       }
 
       function deleteMenuItem(id) { customConfirm("DELETE ITEM", "Are you sure you want to completely remove this item from the list?", "DELETE", function() { google.script.run.withSuccessHandler(loadPotluck).deletePotluckItem(id); }); }
-      function addItem() { var c = document.getElementById('newCat').value, n = document.getElementById('newItemName').value; if(!n) return; google.script.run.withSuccessHandler(function() { document.getElementById('newItemName').value=''; loadPotluck(); }).addNewPotluckItem(c,n); }
       function doClaim(id) { google.script.run.withSuccessHandler(loadPotluck).claimItem(id, localStorage.getItem('mcgeeUser')); }
       function doUnclaim(id) { customConfirm("UNCLAIM ITEM", "Are you sure you want to cancel bringing this item?", "YES, UNCLAIM", function() { google.script.run.withSuccessHandler(loadPotluck).unclaimItem(id); }); }
       function doClearMenu() { customConfirm("CLEAR MENU", "🚨 Are you sure? This will permanently delete all current potluck items.", "YES, CLEAR IT", function() { google.script.run.withSuccessHandler(function() { customAlert("SUCCESS", "Menu cleared!"); loadPotluck(); }).clearPotluckMenu(); }); }
