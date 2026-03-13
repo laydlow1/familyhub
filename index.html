@@ -538,19 +538,28 @@ body[class*="house"] button:active {
               <div id="feed"></div>
             </div>
 
-            <div id="viewPotluck" style="display:none;">
+           <div id="viewPotluck" style="display:none;">
               <div class="card" style="border-left:none; border-bottom:4px solid #ccc; padding:15px; margin-bottom:15px;">
-                 <h4 style="margin:0 0 10px 0;">+ ADD NEW ITEM</h4>
-                 <div style="display:flex; gap:10px;">
-                    <select id="newCat" style="flex:1;" onchange="updateSuggestions()">
-                       <option>Meats</option><option>Sides</option><option>Drinks</option><option>Desserts</option><option>Supplies</option><option>Other</option>
+                 <h4 style="margin:0 0 10px 0;">+ ADD ITEMS TO MENU</h4>
+                 <div style="display:flex; flex-direction:column; gap:10px;">
+                    <select id="newCat" onchange="updateMultiSelect()" style="width:100%; font-weight:bold; padding:10px; border-radius:8px;">
+                       <option value="Meats">🥩 Meats</option>
+                       <option value="Sides">🥗 Sides</option>
+                       <option value="Drinks">🥤 Drinks</option>
+                       <option value="Desserts">🧁 Desserts</option>
+                       <option value="Supplies">🍽️ Supplies</option>
+                       <option value="Other">🎉 Other</option>
                     </select>
-                    <input type="text" id="newItemName" list="itemSuggestions" placeholder="Type your own or select..." style="flex:2;">
-                    <datalist id="itemSuggestions"></datalist>
-                 </div>
-                 <div style="display:flex; gap:10px; margin-top:5px;">
-                    <button type="button" onclick="addItem()" class="main-btn" style="flex:2; padding:10px; font-size:12px;">ADD TO MENU</button>
-                    <button type="button" onclick="doClearMenu()" class="main-btn" style="flex:1; padding:10px; font-size:12px; background:#dc3545;">🗑️ CLEAR ALL</button>
+                    
+                    <div id="multiSelectBox" style="background:#f9f9f9; border:1px solid #ddd; padding:12px; border-radius:8px; max-height:160px; overflow-y:auto; display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:13px;">
+                        </div>
+                    
+                    <input type="text" id="customPotluckItem" placeholder="Or type a custom item here..." style="width:100%; font-size:13px; margin-top:5px;">
+                    
+                    <div style="display:flex; gap:10px; margin-top:5px;">
+                       <button type="button" onclick="addMultipleItems()" class="main-btn" style="flex:2; padding:12px; font-size:12px;">+ ADD TO MENU</button>
+                       <button type="button" onclick="doClearMenu()" class="main-btn" style="flex:1; padding:12px; font-size:12px; background:#dc3545;">🗑️ CLEAR</button>
+                    </div>
                  </div>
               </div>
               <div class="card" style="border-left:none; border-top:8px solid #1877F2;">
