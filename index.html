@@ -168,16 +168,18 @@
       textarea#postMessage:focus, textarea#postMessage:active { border: 0px solid transparent !important; outline: none !important; box-shadow: none !important; -webkit-box-shadow: none !important; }
       /* --- THEME FIXES --- */
 
+/* --- THEME FIXES --- */
+
 /* Alabama Theme: Add Red Borders to Buttons */
-body[data-theme="alabama"] button, 
-body[data-theme="alabama"] .nav-btn {
+body[class*="bama"] button, 
+body[class*="bama"] .nav-btn {
     border: 2px solid #9E1B32 !important; /* Crimson Red */
 }
 
 /* House Divided Theme: White text on selected nav buttons so it doesn't disappear */
-body[data-theme="house-divided"] .nav-btn.active, 
-body[data-theme="house-divided"] .nav-btn:focus,
-body[data-theme="house-divided"] button:active {
+body[class*="house"] .nav-btn.active, 
+body[class*="house"] .nav-btn:focus,
+body[class*="house"] button:active {
     color: #FFFFFF !important; /* Pure White text */
 }
     </style>
