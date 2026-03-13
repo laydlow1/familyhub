@@ -250,6 +250,90 @@ body[class*="house"] button:active {
       body[class*="batman"] .banner-crest, body[class*="spiderman"] .banner-crest { display: none !important; }
       body[class*="batman"] .sidebar, body[class*="spiderman"] .sidebar { display: flex !important; }
       }
+
+      /* --- CUSTOM CINEMATIC THEMES --- */
+      body[class*="batman"] .banner-crest, body[class*="spiderman"] .banner-crest, body[class*="matrix"] .banner-crest, body[class*="yellowstone"] .banner-crest, body[class*="darkside"] .banner-crest { display: none !important; }
+      body[class*="batman"] .sidebar, body[class*="spiderman"] .sidebar, body[class*="matrix"] .sidebar, body[class*="yellowstone"] .sidebar, body[class*="darkside"] .sidebar { display: flex !important; }
+      
+      /* The Dark Knight */
+      body[class*="batman"] .main-banner { background: #111 !important; height: 75px; gap: 0; } 
+      body[class*="batman"] .banner-text { font-size: 0 !important; } 
+      body[class*="batman"] .banner-text::after { content: "🦇 The Dark Knight 🦇"; font-size: 44px; color: #f1c40f; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding-top: 5px; } 
+      body[class*="batman"] .main-btn { background: #f1c40f; color: #111; } 
+      body[class*="batman"] .nav-btn.active { background: #f1c40f; color: #111; border-color: #f1c40f; } 
+      body[class*="batman"] h3, body[class*="batman"] h2, body[class*="batman"] .post-user, body[class*="batman"] .reaction-bubble { color: #f1c40f !important; } 
+      body[class*="batman"] .card, body[class*="batman"] .top-user-bar { border-left-color: #f1c40f !important; } 
+      body[class*="batman"] .event-box, body[class*="batman"] .countdown-container { border-color: #f1c40f !important; background: #111 !important; color: #f1c40f !important;} 
+      body[class*="batman"] .header-avatar { background: #111 !important; color: #f1c40f !important; border: 2px solid #f1c40f; } 
+      body[class*="batman"] .sidebar-left { background: #222; border-right: 4px solid #000; } 
+      body[class*="batman"] .sidebar-right { background: #222; border-left: 4px solid #000; } 
+      body[class*="batman"] .sidebar-left::after { content: "🌃"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="batman"] .sidebar-right::after { content: "🦇"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      /* Web Slinger */
+      body[class*="spiderman"] .main-banner { background: #e23636 !important; height: 75px; gap: 0; } 
+      body[class*="spiderman"] .banner-text { font-size: 0 !important; } 
+      body[class*="spiderman"] .banner-text::after { content: "🕷️ Web Slinger 🕸️"; font-size: 44px; color: white; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); padding-top: 5px; } 
+      body[class*="spiderman"] .main-btn { background: #0059b3; color: #fff; } 
+      body[class*="spiderman"] .nav-btn.active { background: #0059b3; color: #fff; border-color: #0059b3; } 
+      body[class*="spiderman"] h3, body[class*="spiderman"] h2, body[class*="spiderman"] .post-user, body[class*="spiderman"] .reaction-bubble { color: #e23636 !important; } 
+      body[class*="spiderman"] .card, body[class*="spiderman"] .top-user-bar { border-left-color: #0059b3 !important; } 
+      body[class*="spiderman"] .event-box, body[class*="spiderman"] .countdown-container { border-color: #0059b3 !important; background: #e23636 !important; color: white !important;} 
+      body[class*="spiderman"] .header-avatar { background: #e23636 !important; } 
+      body[class*="spiderman"] .sidebar-left { background: #e23636; border-right: 4px solid #b02a2a; } 
+      body[class*="spiderman"] .sidebar-right { background: #0059b3; border-left: 4px solid #004080; } 
+      body[class*="spiderman"] .sidebar-left::after { content: "🕷️"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="spiderman"] .sidebar-right::after { content: "🕸️"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      /* The Matrix */
+      body[class*="matrix"] .main-banner { background: #0d0d0d !important; height: 75px; gap: 0; border-bottom: 2px solid #00FF41; } 
+      body[class*="matrix"] .banner-text { font-size: 0 !important; } 
+      body[class*="matrix"] .banner-text::after { content: "💻 The Matrix 🕶️"; font-size: 44px; color: #00FF41; font-family: 'Courier New', Courier, monospace; text-shadow: 0 0 8px #00FF41; padding-top: 5px; font-weight: bold; } 
+      body[class*="matrix"] .main-btn { background: #00FF41; color: #0d0d0d; } 
+      body[class*="matrix"] .nav-btn.active { background: #00FF41; color: #0d0d0d; border-color: #00FF41; } 
+      body[class*="matrix"] h3, body[class*="matrix"] h2, body[class*="matrix"] .post-user, body[class*="matrix"] .reaction-bubble { color: #00FF41 !important; } 
+      body[class*="matrix"] .card, body[class*="matrix"] .top-user-bar { border-left-color: #00FF41 !important; } 
+      body[class*="matrix"] .event-box, body[class*="matrix"] .countdown-container { border-color: #00FF41 !important; background: #0d0d0d !important; color: #00FF41 !important;} 
+      body[class*="matrix"] .header-avatar { background: #0d0d0d !important; color: #00FF41 !important; border: 2px solid #00FF41; } 
+      body[class*="matrix"] .sidebar-left { background: #111; border-right: 4px solid #00FF41; } 
+      body[class*="matrix"] .sidebar-right { background: #111; border-left: 4px solid #00FF41; } 
+      body[class*="matrix"] .sidebar-left::after { content: "💻"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 0 15px #00FF41); display: block; margin-top: 40px;} 
+      body[class*="matrix"] .sidebar-right::after { content: "🕶️"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 0 15px #00FF41); display: block; margin-top: 40px;}
+
+      /* Yellowstone */
+      body[class*="yellowstone"] .main-banner { background: #2b3a2a !important; height: 75px; gap: 0; border-bottom: 3px solid #6b4c2a;} 
+      body[class*="yellowstone"] .banner-text { font-size: 0 !important; } 
+      body[class*="yellowstone"] .banner-text::after { content: "🌲 The Ranch 🐎"; font-size: 44px; color: #e8d0a9; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); padding-top: 5px; } 
+      body[class*="yellowstone"] .main-btn { background: #6b4c2a; color: #fff; } 
+      body[class*="yellowstone"] .nav-btn.active { background: #6b4c2a; color: #fff; border-color: #6b4c2a; } 
+      body[class*="yellowstone"] h3, body[class*="yellowstone"] h2, body[class*="yellowstone"] .post-user, body[class*="yellowstone"] .reaction-bubble { color: #6b4c2a !important; } 
+      body[class*="yellowstone"] .card, body[class*="yellowstone"] .top-user-bar { border-left-color: #2b3a2a !important; } 
+      body[class*="yellowstone"] .event-box, body[class*="yellowstone"] .countdown-container { border-color: #6b4c2a !important; background: #2b3a2a !important; color: #e8d0a9 !important;} 
+      body[class*="yellowstone"] .header-avatar { background: #6b4c2a !important; color: #fff !important; } 
+      body[class*="yellowstone"] .sidebar-left { background: #3a4f39; border-right: 4px solid #2b3a2a; } 
+      body[class*="yellowstone"] .sidebar-right { background: #3a4f39; border-left: 4px solid #2b3a2a; } 
+      body[class*="yellowstone"] .sidebar-left::after { content: "🌲"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="yellowstone"] .sidebar-right::after { content: "🐎"; font-size: 130px; animation: floatDecor 6s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      /* The Dark Side */
+      body[class*="darkside"] .main-banner { background: #050505 !important; height: 75px; gap: 0; border-bottom: 2px solid #e60000; } 
+      body[class*="darkside"] .banner-text { font-size: 0 !important; } 
+      body[class*="darkside"] .banner-text::after { content: "⚔️ The Dark Side 🌑"; font-size: 44px; color: #e60000; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 10px rgba(230,0,0,0.8); padding-top: 5px; } 
+      body[class*="darkside"] .main-btn { background: #e60000; color: #fff; } 
+      body[class*="darkside"] .nav-btn.active { background: #e60000; color: #fff; border-color: #e60000; } 
+      body[class*="darkside"] h3, body[class*="darkside"] h2, body[class*="darkside"] .post-user, body[class*="darkside"] .reaction-bubble { color: #e60000 !important; } 
+      body[class*="darkside"] .card, body[class*="darkside"] .top-user-bar { border-left-color: #e60000 !important; } 
+      body[class*="darkside"] .event-box, body[class*="darkside"] .countdown-container { border-color: #e60000 !important; background: #111 !important; color: #ff4d4d !important;} 
+      body[class*="darkside"] .header-avatar { background: #111 !important; color: #e60000 !important; border: 2px solid #e60000;} 
+      body[class*="darkside"] .sidebar-left { background: #1a1a1a; border-right: 4px solid #e60000; } 
+      body[class*="darkside"] .sidebar-right { background: #1a1a1a; border-left: 4px solid #e60000; } 
+      body[class*="darkside"] .sidebar-left::after { content: "⚔️"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 0 15px #e60000); display: block; margin-top: 40px;} 
+      body[class*="darkside"] .sidebar-right::after { content: "🌑"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 0 15px #e60000); display: block; margin-top: 40px;}
+
+      @media (max-width: 800px) {
+        body[class*="batman"] .main-banner, body[class*="spiderman"] .main-banner, body[class*="matrix"] .main-banner, body[class*="yellowstone"] .main-banner, body[class*="darkside"] .main-banner { height: 60px !important; }
+        body[class*="batman"] .banner-text::after, body[class*="spiderman"] .banner-text::after, body[class*="matrix"] .banner-text::after, body[class*="yellowstone"] .banner-text::after, body[class*="darkside"] .banner-text::after { font-size: 28px !important; }
+      }
     </style>
   </head>
 
