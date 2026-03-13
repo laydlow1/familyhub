@@ -381,8 +381,26 @@ body[class*="house"] button:active {
       /* Keeps text readable on neon themes */
       body[class*="batman"] .cat-badge, body[class*="batman"] #btnSubmitNewBaby,
       body[class*="matrix"] .cat-badge, body[class*="matrix"] #btnSubmitNewBaby { color: #111 !important; font-weight: 900; }
+
+      /* --- UPGRADED "FROSTED GLASS" THEME ICONS --- */
+      .sidebar-left::after, .sidebar-right::after { 
+          display: block !important; 
+          opacity: 0.15 !important; /* Makes it a subtle watermark instead of a loud sticker */
+          filter: grayscale(100%) contrast(150%) !important; /* Strips all cartoon colors, makes it sleek black/grey */
+          font-size: 160px !important;
+          animation-duration: 8s !important; /* Slows the bounce down to a very elegant, slow drift */
+      }
+      
+      /* Reverses the effect for dark themes so the watermarks look like faint glowing glass */
+      body[class*="dark"] .sidebar-left::after, body[class*="dark"] .sidebar-right::after,
+      body[class*="batman"] .sidebar-left::after, body[class*="batman"] .sidebar-right::after,
+      body[class*="matrix"] .sidebar-left::after, body[class*="matrix"] .sidebar-right::after,
+      body[class*="darkside"] .sidebar-left::after, body[class*="darkside"] .sidebar-right::after {
+          opacity: 0.08 !important;
+          filter: grayscale(100%) invert(100%) !important; 
+      }
     </style>
-    </style>
+
   </head>
 
   <body>
