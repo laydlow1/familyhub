@@ -1372,19 +1372,122 @@ body[class*="house"] button:active {
 
       function loadGuessTheBaby() {
         activeGameType = 'Guess the Baby';
-        currentGameScore = 0; currentGameQuestions = 0; document.getElementById('currentScore').innerText = '0';
-        document.getElementById('gameScoreBoard').style.display = 'block'; document.getElementById('btnShareScore').style.display = 'none';
-        var gameDiv = document.getElementById('gameContainer'); gameDiv.innerHTML = '';
-        
-        var selectedQuestions = gameData.guessTheBaby.slice().sort(function() { return 0.5 - Math.random(); }).slice(0, 5);
-        selectedQuestions.forEach(function(item, index) {
-           var safeAns = item.a.replace(/"/g, '"');
-           var qHtml = '<div class="trivia-block" data-ans="' + safeAns + '" style="margin-bottom:15px; padding:10px; background:#f9f9f9; border-radius:10px; border-left:4px solid #8e44ad;">';
-           qHtml += '<strong style="font-size:14px; display:block; margin-bottom:8px; color:#333;">' + (index+1) + '. Who is this?</strong>';
-           qHtml += '<img src="https://drive.google.com/thumbnail?id=' + item.img + '&sz=w400" style="width:100%; border-radius:8px; margin-bottom:10px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">';
-           var opts = item.opts.slice().sort(function() { return 0.5 - Math.random(); });
-           opts.forEach(function(opt) { qHtml += '<button type="button" onclick="checkTrivia(this)" style="display:block; width:100%; text-align:left; padding:12px 10px; margin-bottom:8px; border:1px solid #ccc; border-radius:8px; background:white; cursor:pointer; font-size:13px; font-weight:bold; color:#333;">' + opt + '</button>'; });
-           qHtml += '</div>'; gameDiv.innerHTML += qHtml;
+        document.getElementById('gameScoreBoard').style.display = 'none';
+        document.getElementById('btnShareScore').style.display = 'none';
+        var gameDiv = document.getElementById('gameContainer');
+        gameDiv.innerHTML = '<p style="text-align:center; color:#666; font-size:13px; font-weight:bold;">Checking for active games... ⏳</p>';
+
+        google.script.run
+          .withSuccessHandler(renderBabyGame)
+          .withFailureHandler(function(err){ gameDiv.innerHTML = "<p style='text-align:center; color:red;'>Error loading game.</p>"; })
+          .getBabyGameState(localStorage.getItem('mcgeeUser'));
+      }
+
+      function renderBabyGame(state) {
+        var gameDiv = document.getElementById('gameContainer');
+        var html = '<div class="trivia-block" style="padding:15px; background:#f9f9f9; border-radius:10px; border-left:4px solid #8e44ad; text-align:center;">';
+
+        if (state.active) {
+          // --- SCENARIO 1: GAME IS CURRENTLY RUNNING ---
+          html += '<h3 style="margin-top:0; color:#8e44ad; font-weight:900;">WHO IS THIS?</h3>';
+          html += '<img src="https://drive.google.com/thumbnail?id=' + state.imageId + '&sz=w600" style="width:100%; border-radius:8px; margin-bottom:15px; box-shadow:0 4px 8px rgba(0,0,0,0.2);">';
+          html += '<p style="font-size:14px; font-weight:900; color:#dc3545; background:#fff; padding:10px; border-radius:8px; border:1px solid #dc3545;">⏱️ Time left: <span id="babyTimer">Calculating...</span></p>';
+
+          if (state.isUploader) {
+            html += '<p style="background:#e2e3e5; padding:15px; border-radius:8px; font-weight:bold; font-size:12px; color:#333;">📸 You uploaded this photo! You are locked out from guessing.</p>';
+          } else if (state.hasGuessed) {
+            html += '<p style="background:#d4edda; color:#155724; padding:15px; border-radius:8px; font-weight:bold; font-size:12px;">✅ Your guess is locked in! Check back when the timer ends to see if you were right.</p>';
+          } else {
+            html += '<input type="text" id="myBabyGuess" placeholder="Type your guess here..." style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; border:2px solid #ccc; border-radius:8px; text-align:center; font-weight:bold; font-size:16px;">';
+            html += '<button type="button" onclick="sendBabyGuess()" id="btnSubmitBabyGuess" class="main-btn" style="background:#8e44ad;">SUBMIT GUESS</button>';
+          }
+
+          // Setup the live countdown loop
+          var endTime = state.endTime;
+          if(window.babyInterval) clearInterval(window.babyInterval);
+          window.babyInterval = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = endTime - now;
+            if (distance < 0) {
+              clearInterval(window.babyInterval);
+              document.getElementById('babyTimer').innerText = "TIME IS UP! Refresh the page.";
+              return;
+            }
+            var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('babyTimer').innerText = d + "d " + h + "h " + m + "m";
+          }, 1000);
+
+        } else {
+          // --- SCENARIO 2: NO GAME IS RUNNING ---
+          if(window.babyInterval) clearInterval(window.babyInterval);
+
+          if (state.lastGame && state.lastGame.imageId) {
+            html += '<h3 style="margin-top:0; color:#28a745; font-weight:900;">LAST GAME RESULTS</h3>';
+            html += '<img src="https://drive.google.com/thumbnail?id=' + state.lastGame.imageId + '&sz=w400" style="width:100%; max-width:200px; border-radius:8px; margin-bottom:10px;">';
+            html += '<p style="font-size:16px; font-weight:bold;">It was: <span style="color:#28a745; font-size:20px;">' + state.lastGame.correctName.toUpperCase() + '</span>!</p>';
+            html += '<p style="font-size:11px; color:#666; margin-bottom:15px;">Uploaded by: ' + state.lastGame.uploader + '</p>';
+            
+            html += '<div style="text-align:left; background:#fff; border:1px solid #ddd; padding:10px; border-radius:8px; max-height:150px; overflow-y:auto; margin-bottom:15px;">';
+            html += '<strong style="font-size:11px; display:block; margin-bottom:5px; color:#666;">FAMILY GUESSES:</strong>';
+            var guesses = state.lastGame.guesses;
+            var hasGuesses = false;
+            for (var user in guesses) {
+              hasGuesses = true;
+              var isCorrect = (guesses[user].toLowerCase().trim() === state.lastGame.correctName.toLowerCase().trim());
+              var icon = isCorrect ? '✅' : '❌';
+              html += '<div style="font-size:13px; margin-bottom:6px; border-bottom:1px solid #eee; padding-bottom:4px;">' + icon + ' <strong>' + user + ':</strong> ' + guesses[user] + '</div>';
+            }
+            if(!hasGuesses) html += '<div style="font-size:12px; color:#999; font-style:italic;">No one guessed!</div>';
+            html += '</div><hr style="border-top:2px dashed #ccc; margin:20px 0;">';
+          }
+
+          html += '<h3 style="margin-top:0; color:#1877F2; font-weight:900;">START A NEW GAME</h3>';
+          html += '<p style="font-size:12px; color:#555; line-height:1.5;">Upload an old baby photo of someone in the family. We will have exactly 3 days to guess who it is!</p>';
+          html += '<input type="text" id="newBabyName" placeholder="Who is in the picture? (The Answer)" style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:15px; border:2px solid #ccc; border-radius:8px; font-weight:bold; text-align:center; font-size:15px;">';
+          
+          html += '<div class="file-upload-wrapper" style="justify-content:center; margin-bottom:5px;">';
+          html += '<input type="file" id="newBabyFile" accept="image/*" onchange="document.getElementById(\'babyFileStatus\').innerText = \'📸 Photo Ready!\'; document.getElementById(\'babyFileStatus\').style.color = \'#28a745\';">';
+          html += '<label for="newBabyFile" class="file-upload-btn" style="border:2px solid #1877F2; color:#1877F2; width:100%;">CHOOSE PHOTO</label>';
+          html += '</div><p id="babyFileStatus" style="font-size:12px; color:#dc3545; font-weight:bold; margin-bottom:15px;">No photo selected</p>';
+          
+          html += '<button type="button" onclick="submitNewBaby()" id="btnSubmitNewBaby" class="main-btn" style="background:#1877F2;">START 3-DAY TIMER</button>';
+        }
+
+        html += '</div>';
+        gameDiv.innerHTML = html;
+      }
+
+      function sendBabyGuess() {
+        var guess = document.getElementById('myBabyGuess').value;
+        if(!guess) return;
+        var btn = document.getElementById('btnSubmitBabyGuess');
+        btn.innerText = "SAVING GUESS... ⏳"; btn.disabled = true;
+        google.script.run
+          .withSuccessHandler(loadGuessTheBaby)
+          .submitBabyGuess(localStorage.getItem('mcgeeUser'), guess);
+      }
+
+      function submitNewBaby() {
+        var name = document.getElementById('newBabyName').value;
+        var fileInput = document.getElementById('newBabyFile');
+        if(!name || !fileInput.files || fileInput.files.length === 0) {
+          return customAlert("MISSING INFO", "Please type the correct name and select a photo.");
+        }
+        var btn = document.getElementById('btnSubmitNewBaby');
+        btn.innerText = "UPLOADING... ⏳"; btn.disabled = true;
+
+        compressImage(fileInput.files[0], 800, function(data) {
+          if (data && data !== "ERROR") {
+            google.script.run
+              .withSuccessHandler(loadGuessTheBaby)
+              .withFailureHandler(function(err){ customAlert("ERROR", "Upload failed. Try again."); loadGuessTheBaby(); })
+              .uploadNewBaby(localStorage.getItem('mcgeeUser'), name, data);
+          } else {
+            customAlert("ERROR", "Could not process image.");
+            btn.innerText = "START 3-DAY TIMER"; btn.disabled = false;
+          }
         });
       }
 
