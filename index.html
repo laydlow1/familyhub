@@ -790,7 +790,59 @@ body[class*="house"] button:active {
         "Meats": ["Burgers", "Hot Dogs", "BBQ Ribs", "Pulled Pork", "Grilled Chicken", "Sausages", "Brisket", "Steak"], "Sides": ["Potato Salad", "Mac & Cheese", "Baked Beans", "Coleslaw", "Chips & Dip", "Pasta Salad", "Deviled Eggs", "Corn on the Cob"], "Drinks": ["Assorted Soda", "Sweet Tea", "Bottled Water", "Lemonade", "Beer", "Wine", "Cooler with Ice"], "Desserts": ["Chocolate Chip Cookies", "Brownies", "Cupcakes", "Fruit Salad", "Banana Pudding", "Apple Pie", "Ice Cream"], "Supplies": ["Paper Plates", "Plastic Cups", "Napkins", "Forks & Spoons", "Trash Bags", "Extra Ice", "Charcoal/Lighter Fluid"], "Other": ["Appetizers", "Snacks", "Condiments", "Ice", "Music/Speaker"]
       };
 
-      function updateSuggestions() { var cat = document.getElementById('newCat').value; var datalist = document.getElementById('itemSuggestions'); datalist.innerHTML = ''; if (potluckSuggestions[cat]) { potluckSuggestions[cat].forEach(function(item) { var option = document.createElement('option'); option.value = item; datalist.appendChild(option); }); } }
+      function updateMultiSelect() {
+        var cat = document.getElementById('newCat').value; 
+        var box = document.getElementById('multiSelectBox');
+        box.innerHTML = '';
+        if (potluckSuggestions[cat]) {
+          potluckSuggestions[cat].forEach(function(item) {
+            box.innerHTML += '<label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:bold; color:#333;"><input type="checkbox" class="potluck-check" value="' + item + '" style="width:16px; height:16px; margin:0;"> ' + item + '</label>';
+          });
+        } else {
+          box.innerHTML = '<span style="color:#666; font-style:italic;">Type custom items below.</span>';
+        }
+      }
+
+      function addMultipleItems() {
+        var catObj = document.getElementById('newCat');
+        var rawCat = catObj.options[catObj.selectedIndex].text.replace(/[^a-zA-Z\s]/g, '').trim(); 
+        var checkboxes = document.querySelectorAll('.potluck-check:checked');
+        var customItem = document.getElementById('customPotluckItem').value.trim();
+        
+        var itemsToAdd = [];
+        checkboxes.forEach(function(cb) { itemsToAdd.push(cb.value); });
+        if (customItem) { itemsToAdd.push(customItem); }
+        
+        if (itemsToAdd.length === 0) return customAlert("WAIT!", "Please check at least one box or type a custom item to add.");
+        
+        var btn = document.querySelector('button[onclick="addMultipleItems()"]');
+        var origText = btn.innerText;
+        btn.innerText = "ADDING ITEMS... ⏳"; btn.disabled = true;
+
+        var addedCount = 0;
+        // This loops through the list and safely adds them one by one so Google Sheets doesn't crash
+        function addNext() {
+            if (addedCount >= itemsToAdd.length) {
+                btn.innerText = origText; btn.disabled = false;
+                document.getElementById('customPotluckItem').value = '';
+                updateMultiSelect(); 
+                loadPotluck();
+                return;
+            }
+            google.script.run.withSuccessHandler(function() {
+                addedCount++;
+                addNext();
+            }).addNewPotluckItem(rawCat, itemsToAdd[addedCount]);
+        }
+        addNext();
+      }
+      
+      // Make sure the checkboxes load immediately when the user clicks the EVENT tab
+      var originalShowPotluck = showPotluck;
+      showPotluck = function() {
+          originalShowPotluck();
+          updateMultiSelect();
+      };
 
       function closeAllBackgroundModals() { document.getElementById('telegramModal').style.display = 'none'; document.getElementById('pinModal').style.display = 'none'; document.getElementById('regModal').style.display = 'none'; document.getElementById('editProfileModal').style.display = 'none'; document.getElementById('avatarModal').style.display = 'none'; document.getElementById('announcementModal').style.display = 'none'; document.getElementById('galleryModal').style.display = 'none'; document.getElementById('installModal').style.display = 'none'; document.getElementById('welcomeModal').style.display = 'none'; }
       function customAlert(title, message) { closeAllBackgroundModals(); document.getElementById('alertTitle').innerText = title; document.getElementById('alertMessage').innerText = message; document.getElementById('alertModal').style.display = 'flex'; }
