@@ -196,6 +196,59 @@ body[class*="house"] .nav-btn:focus,
 body[class*="house"] button:active {
     color: #FFFFFF !important; /* Pure White text */
 }
+      /* --- SUPERHERO THEMES --- */
+      body[class*="batman"] .banner-crest, body[class*="spiderman"] .banner-crest, body[class*="superman"] .banner-crest { display: none !important; }
+      body[class*="batman"] .sidebar, body[class*="spiderman"] .sidebar, body[class*="superman"] .sidebar { display: flex; }
+      
+      /* The Dark Knight */
+      body[class*="batman"] .main-banner { background: #111 !important; height: 75px; gap: 0; } 
+      body[class*="batman"] .banner-text { font-size: 0 !important; } 
+      body[class*="batman"] .banner-text::after { content: "🦇 The Dark Knight 🦇"; font-size: 44px; color: #f1c40f; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding-top: 5px; } 
+      body[class*="batman"] .main-btn { background: #f1c40f; color: #111; } 
+      body[class*="batman"] .nav-btn.active { background: #f1c40f; color: #111; border-color: #f1c40f; } 
+      body[class*="batman"] h3, body[class*="batman"] h2, body[class*="batman"] .post-user, body[class*="batman"] .reaction-bubble { color: #f1c40f !important; } 
+      body[class*="batman"] .card, body[class*="batman"] .top-user-bar { border-left-color: #f1c40f !important; } 
+      body[class*="batman"] .event-box, body[class*="batman"] .countdown-container { border-color: #f1c40f !important; background: #111 !important; color: #f1c40f !important;} 
+      body[class*="batman"] .header-avatar { background: #111 !important; color: #f1c40f !important; border: 2px solid #f1c40f; } 
+      body[class*="batman"] .sidebar-left { background: #222; border-right: 4px solid #000; } 
+      body[class*="batman"] .sidebar-right { background: #222; border-left: 4px solid #000; } 
+      body[class*="batman"] .sidebar-left::after { content: "🌃"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="batman"] .sidebar-right::after { content: "🦇"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      /* Web Slinger */
+      body[class*="spiderman"] .main-banner { background: #e23636 !important; height: 75px; gap: 0; } 
+      body[class*="spiderman"] .banner-text { font-size: 0 !important; } 
+      body[class*="spiderman"] .banner-text::after { content: "🕷️ Web Slinger 🕸️"; font-size: 44px; color: white; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); padding-top: 5px; } 
+      body[class*="spiderman"] .main-btn { background: #0059b3; color: #fff; } 
+      body[class*="spiderman"] .nav-btn.active { background: #0059b3; color: #fff; border-color: #0059b3; } 
+      body[class*="spiderman"] h3, body[class*="spiderman"] h2, body[class*="spiderman"] .post-user, body[class*="spiderman"] .reaction-bubble { color: #e23636 !important; } 
+      body[class*="spiderman"] .card, body[class*="spiderman"] .top-user-bar { border-left-color: #0059b3 !important; } 
+      body[class*="spiderman"] .event-box, body[class*="spiderman"] .countdown-container { border-color: #0059b3 !important; background: #e23636 !important; color: white !important;} 
+      body[class*="spiderman"] .header-avatar { background: #e23636 !important; } 
+      body[class*="spiderman"] .sidebar-left { background: #e23636; border-right: 4px solid #b02a2a; } 
+      body[class*="spiderman"] .sidebar-right { background: #0059b3; border-left: 4px solid #004080; } 
+      body[class*="spiderman"] .sidebar-left::after { content: "🕷️"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="spiderman"] .sidebar-right::after { content: "🕸️"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      /* Man of Steel */
+      body[class*="superman"] .main-banner { background: #005bb5 !important; height: 75px; gap: 0; } 
+      body[class*="superman"] .banner-text { font-size: 0 !important; } 
+      body[class*="superman"] .banner-text::after { content: "🦸‍♂️ Man of Steel 🦸‍♂️"; font-size: 44px; color: #f1c40f; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); padding-top: 5px; } 
+      body[class*="superman"] .main-btn { background: #e23636; color: #fff; } 
+      body[class*="superman"] .nav-btn.active { background: #e23636; color: #fff; border-color: #e23636; } 
+      body[class*="superman"] h3, body[class*="superman"] h2, body[class*="superman"] .post-user, body[class*="superman"] .reaction-bubble { color: #005bb5 !important; } 
+      body[class*="superman"] .card, body[class*="superman"] .top-user-bar { border-left-color: #e23636 !important; } 
+      body[class*="superman"] .event-box, body[class*="superman"] .countdown-container { border-color: #e23636 !important; background: #005bb5 !important; color: white !important;} 
+      body[class*="superman"] .header-avatar { background: #005bb5 !important; } 
+      body[class*="superman"] .sidebar-left { background: #005bb5; border-right: 4px solid #004080; } 
+      body[class*="superman"] .sidebar-right { background: #e23636; border-left: 4px solid #b02a2a; } 
+      body[class*="superman"] .sidebar-left::after { content: "🚀"; font-size: 130px; animation: floatDecor 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;} 
+      body[class*="superman"] .sidebar-right::after { content: "🏙️"; font-size: 130px; animation: floatDecor 5s ease-in-out infinite reverse; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; margin-top: 40px;}
+
+      @media (max-width: 800px) {
+        body[class*="batman"] .main-banner, body[class*="spiderman"] .main-banner, body[class*="superman"] .main-banner { height: 60px !important; }
+        body[class*="batman"] .banner-text::after, body[class*="spiderman"] .banner-text::after, body[class*="superman"] .banner-text::after { font-size: 28px !important; }
+      }
     </style>
   </head>
 
