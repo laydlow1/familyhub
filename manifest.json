@@ -8,13 +8,15 @@
   "theme_color": "#1877F2",
   "icons": [
     {
-      "src": "https://drive.google.com/thumbnail?id=1fZ_bzmQl34X1zkrT363q96KFKx7t2F3s&sz=w192",
+      "icons": [
+    {
+      "src": "crest.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://drive.google.com/thumbnail?id=1fZ_bzmQl34X1zkrT363q96KFKx7t2F3s&sz=w512",
+      "src": "crest.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
