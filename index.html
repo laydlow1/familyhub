@@ -1838,7 +1838,21 @@ body[class*="house"] button:active {
       
       function shareScore() { var msg = "I just scored " + currentGameScore + " in Family " + activeGameType + "! 🏆 Can you beat my score?"; document.getElementById('postMessage').value = msg; showWall(); document.getElementById('postMessage').focus(); }
       function sharePrompt(promptText) { document.getElementById('postMessage').value = "🤔 WOULD YOU RATHER:\n" + promptText + "\n\nMy Answer: "; showWall(); document.getElementById('postMessage').focus(); }
-
+function forceAppRefresh() {
+        // Show a loading screen so they know it's working
+        document.body.innerHTML = '<div style="display:flex; height:100vh; width:100vw; align-items:center; justify-content:center; font-family:sans-serif; font-size:18px; font-weight:900; color:#1877F2; background:#f0f2f5;">PULLING LATEST UPDATE... ⏳</div>';
+        
+        // Grab the official app URL, or use the current one
+        var freshUrl = systemAppUrl ? systemAppUrl : window.location.href.split('?')[0];
+        
+        // Slap a timestamp on the end so the phone is FORCED to download the new code
+        freshUrl += (freshUrl.indexOf('?') > -1 ? '&' : '?') + 'v=' + new Date().getTime();
+        
+        // Fire the refresh
+        setTimeout(function() {
+            window.location.replace(freshUrl);
+        }, 500);
+      }
     </script>
   </body>
 </html>
