@@ -457,17 +457,21 @@ body[class*="house"] button:active {
       </div>
     </div>
 
-    <div id="avatarModal" class="modal-overlay" style="z-index: 2500;">
+   <div id="avatarModal" class="modal-overlay" style="z-index: 2500;">
       <div class="modal-card" style="max-height:85vh; overflow-y:auto;">
         <h3 style="margin-top:0;">UPDATE AVATAR</h3>
+        
         <div style="background:#fdfbfa; border:1px dashed #ccc; padding:15px; border-radius:10px; margin-bottom:20px;">
           <h4 style="margin:0 0 10px 0;">📸 Upload a Photo</h4>
           <div class="file-upload-wrapper" style="justify-content:center;">
-            <input type="file" id="avatarFile" name="myFile" accept="image/jpeg, image/png, image/gif, image/webp" multiple onchange="document.getElementById('avatarUploadStatus').innerText = this.files.length + ' file(s) chosen'">
+            <input type="file" id="avatarFile" name="myFile" accept="image/jpeg, image/png, image/gif, image/webp" onchange="document.getElementById('avatarUploadStatus').innerText = '1 file chosen - Click Upload below!'">
             <label for="avatarFile" class="file-upload-btn">CHOOSE PICTURE</label>
           </div>
           <p id="avatarUploadStatus" style="font-size:11px; color:#666; margin-top:10px;">Square photos look best!</p>
+          
+          <button type="button" onclick="previewAndUploadAvatar(document.getElementById('avatarFile'))" class="main-btn" style="background:#28a745; margin-top:5px; padding:10px; font-size:12px;">⬆️ UPLOAD PHOTO</button>
         </div>
+
         <h4 style="margin:0 0 10px 0;">😄 Or Choose an Emoji</h4>
         <div id="emojiGrid" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;"></div>
         <button type="button" onclick="closeModals()" class="main-btn" style="background:#666; margin-top:20px;">CANCEL</button>
