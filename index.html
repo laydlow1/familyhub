@@ -704,9 +704,10 @@ body[class*="house"] button:active {
               </div>
             </div>
 
-            <div style="display:flex; justify-content:center; gap:20px; margin-bottom:15px; margin-top:5px;">
-               <button type="button" onclick="document.getElementById('telegramModal').style.display='flex'" style="background:none; border:none; color:#65676b; font-size:10px; font-weight:800; cursor:pointer; text-decoration:underline; text-transform:uppercase;">🔔 SET-UP ALERTS</button>
+            <div style="display:flex; justify-content:center; gap:15px; margin-bottom:15px; margin-top:5px; flex-wrap:wrap;">
+               <button type="button" onclick="document.getElementById('telegramModal').style.display='flex'" style="background:none; border:none; color:#65676b; font-size:10px; font-weight:800; cursor:pointer; text-decoration:underline; text-transform:uppercase;">🔔 ALERTS</button>
                <button type="button" onclick="openInstallWizard()" style="background:none; border:none; color:#65676b; font-size:10px; font-weight:800; cursor:pointer; text-decoration:underline; text-transform:uppercase;">ℹ️ APP SETUP</button>
+               <button type="button" onclick="forceAppRefresh()" style="background:none; border:none; color:#65676b; font-size:10px; font-weight:800; cursor:pointer; text-decoration:underline; text-transform:uppercase;">🔄 REFRESH APP</button>
             </div>
 
             <button type="button" id="btnAddAnnouncement" class="add-announcement-btn" onclick="openAnnouncementModal()">+ ADD FAMILY ANNOUNCEMENT</button>
